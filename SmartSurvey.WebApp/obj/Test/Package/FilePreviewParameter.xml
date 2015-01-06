@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="isvupgradesurvey" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Jomit\\Projects\\SmartSurvey\\Main\\SmartSurvey\.WebApp\\obj\\Test\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Jomit\\Projects\\SmartSurvey\\Main\\SmartSurvey\.WebApp\\obj\\Test\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="SmartSurvey-Web.config Connection String" description="SmartSurvey Connection String used in web.config by the application to access the database." value="Data Source=b6h5v2jlcr.database.windows.net,1433;Initial Catalog=isvupgrade;User Id=darrin;Password=book@cafe1;App=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Jomit\\Projects\\SmartSurvey\\Main\\SmartSurvey\.WebApp\\obj\\Test\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='SmartSurvey']/@connectionString" />
+  </parameter>
+</parameters>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/MsBuild/2003">
+
+  <Target Name="GenerateViews">
+    <Delete Files="$(MSBuildProjectDirectory)\..\js\templates.js" />
+    <ItemGroup>
+      <AllTemplates Include="..\Templates\*.html" />
+    </ItemGroup>
+    <MSBuild Projects="$(MSBuildProjectFile)" Properties="Template=%(AllTemplates.Identity);Name=%(AllTemplates.FileName)" Targets="GenerateViewFile">
+    </MSBuild>
+  </Target>
+
+  <Target Name="GenerateViewFile">
+    <PropertyGroup>
+      <Prefix><![CDATA[<script id="$(Name)" type="text/html">]]></Prefix>
+      <Suffix><![CDATA[</script>]]></Suffix>
+      <Contents>$(Prefix)$([System.IO.File]::ReadAllText($(Template)))$(Suffix)</Contents>
+      <AllFileJS>$(MSBuildProjectDirectory)\..\js\templates.js</AllFileJS>
+      <ContentsJS>jQuery("body").append("$(Contents.Replace('%22','\%22').Replace('%0A','').Replace('%0D',''))%22)%3B</ContentsJS>
+    </PropertyGroup>
+    <WriteLinesToFile File="$(AllFileJS)" Lines="$(ContentsJS)" Overwrite="false" />
+  </Target>
+
+</Project>
+
